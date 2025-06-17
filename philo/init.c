@@ -90,8 +90,12 @@ void	allocate_and_initialize_forks(t_data *data)
 	while (f < data->num_of_philos)
 	{
 		data->philos[f].left_fork = &data->forks[f];
-		data->philos[f].right_fork = &data->forks[(f + 1)
-			% (data->num_of_philos)];
+		if (f + 1 == data->num_of_philos)
+		{
+			data->philos[f].right_fork = data->philos[0].left_fork;
+			break ;
+		}
+		data->philos[f].right_fork = &data->forks[f + 1];
 		f++;
 	}
 }

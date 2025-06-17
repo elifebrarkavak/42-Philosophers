@@ -76,7 +76,6 @@ static int	ft_sleep(t_philo *phil)
 		if (phil_life_cont(phil))
 			return (0);
 	}
-	print_text(phil, present(), phil->id, "is thinking\n");
 	return (!phil->someone_dead);
 }
 

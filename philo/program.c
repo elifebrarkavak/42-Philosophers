@@ -22,7 +22,6 @@ void	*one_philo(void *data)
 		present() - p_data->start_time, p_data->philos[0].id);
 	while (!p_data->philos[0].someone_dead)
 	{
-		pthread_mutex_lock(&p_data->mutex_text);
 		if (p_data->philos[0].philo_death_time <= present()
 			&& !p_data->dead_flag)
 		{
@@ -30,10 +29,8 @@ void	*one_philo(void *data)
 			p_data->dead_flag = 1;
 			printf("%lld  %d is died\n",
 				present() - p_data->start_time, p_data->philos[0].id);
-			pthread_mutex_unlock(&p_data->mutex_text);
 			break ;
 		}
-		pthread_mutex_unlock(&p_data->mutex_text);
 		usleep(50);
 	}
 	pthread_mutex_unlock(&p_data->forks[0]);
